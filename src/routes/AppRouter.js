@@ -1,6 +1,7 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import {connect} from "react-redux";
+import { Helmet } from 'react-helmet';
 import createHistory from 'history/createBrowserHistory';
 import Home from "../components/Home";
 //import Header from "../components/Header"; For Private Routing
@@ -20,6 +21,10 @@ const AppRouter = (props) => {
     <Router history={history}>
       <div>
         { /* For Private Routing <Header/> */}
+        <Helmet>
+          <title>Travel Air</title>
+          <meta name="description" content="TravelAir Flight Onboarding WebApp" />
+        </Helmet>
         <Switch>
           <PublicRoutes path="/" component={LoginPage} exact={true} />
           <PrivateRoutes path="/home" component={Home} exact={true} />
