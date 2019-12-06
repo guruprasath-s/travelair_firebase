@@ -2,6 +2,13 @@ import FlightList from "../fixtures/flights";
 
 const flights = (state = [], action) => {
   switch (action.type) {
+    case "ADD_PASSENGER":
+      return state.map(flight => {
+        if (flight.id == action.flightId) {
+          flight.passengers = [...flight.passengers,action.passenger];
+          return flight;
+        } else return flight;
+      });
     case "REMOVE_PASSENGER":
       return state.map(flight => {
         if (flight.id == action.flightId) {

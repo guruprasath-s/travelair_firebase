@@ -7,6 +7,7 @@ import configureStore from "./store/configureStore";
 import { startSetFlights } from "./actions/flights";
 import { login, logout } from "./actions/auth";
 import Header from "./components/InFlight";
+import times from 'lodash/times';
 import "./styles.css";
 
 /* class App extends Component {

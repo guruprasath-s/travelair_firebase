@@ -2,6 +2,23 @@ import database from "../firebase/firebase";
 import FlightList from "../fixtures/flights";
 import { history } from "../routes/AppRouter";
 
+const startAddPassenger = (passenger,flightId)=>{
+  return (dispatch)=>{
+    return database.ref(`flights/${flightId}/passengers`).push(passenger).then((ref)=>{
+      console.log("passenger updated");
+      dispatch(ADD_PASSENGER({...passenger,id:ref.key},flightId));
+    })
+  }
+}
+
+const ADD_PASSENGER = (passenger, flightId) => {
+  return {
+    type: "ADD_PASSENGER",
+    passenger,
+    flightId
+  };
+};
+
 const REMOVE_PASSENGER = (PassengerId, flightId) => {
   return {
     type: "REMOVE_PASSENGER",
@@ -101,8 +118,10 @@ const setFirebaseData = () => {
 export {
   REMOVE_PASSENGER,
   EDIT_PASSENGER,
+  ADD_PASSENGER,
   startSetFlights,
   startRemovePassenger,
   startEditPassenger,
-  setFirebaseData
+  setFirebaseData,
+  startAddPassenger
 };

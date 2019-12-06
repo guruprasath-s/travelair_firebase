@@ -22,7 +22,7 @@ export default class PassengerForm extends React.Component {
       name: props.passenger.name ? props.passenger.name : "",
       age: props.passenger.Age ? props.passenger.Age : "",
       ancillary: props.passenger.ancillary ? props.passenger.ancillary : "",
-      seat: props.passenger.seat ? props.passenger.seat : null,
+      seat: props.passenger.seat ? props.passenger.seat : "",
       error: ""
     };
   }

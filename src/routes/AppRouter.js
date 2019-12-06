@@ -9,6 +9,7 @@ import LoginPage from "../components/LoginPage";
 import NotFoundPage from "../components/NotFoundPage";
 import CheckIn from "../components/CheckIn";
 import InFlight from "../components/InFlight";
+import AddPassenger from "../components/AddPassenger";
 import EditPassenger from "../components/EditPassenger";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
@@ -29,6 +30,7 @@ const AppRouter = (props) => {
           <PublicRoutes path="/" component={LoginPage} exact={true} />
           <PrivateRoutes path="/home" component={Home} exact={true} />
           <PrivateRoutes path="/checkin/:flightid" component={CheckIn} exact={true} />
+          <PrivateRoutes path="/checkin/:flightid/add" component={AddPassenger} exact={true} />
           <PrivateRoutes
             path="/checkin/:flightid/edit/:id"
             component={EditPassenger}

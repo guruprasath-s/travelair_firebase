@@ -14,13 +14,9 @@ class RenderPassengerCard extends React.Component {
   constructor(props) {
     super(props);
     this.removePassenger = this.removePassenger.bind(this);
-    this.editPassenger = this.editPassenger.bind(this);
   }
   removePassenger() {
     this.props.removePassenger(this.props.passenger.id);
-  }
-  editPassenger() {
-    this.props.editPassenger(this.props.passenger.id);
   }
   render() {
     return (

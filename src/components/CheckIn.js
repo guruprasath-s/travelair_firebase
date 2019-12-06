@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Jumbotron, Alert, Badge } from "reactstrap";
+import { Jumbotron, Alert, Badge, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import { startRemovePassenger } from "../actions/flights";
 import RenderPassengerCard from "../components/RenderPassengerCard";
 class CheckIn extends React.Component {
@@ -37,6 +38,14 @@ class CheckIn extends React.Component {
             Passengers Travelling{" "}
             <Badge color="primary">{passengers.length}</Badge>
           </h6>
+          <div className="text-center">
+            <Link
+              className="text-center"
+              to={`/checkin/${flight[0].id}/add`}
+            >
+                <Button>Add Passenger</Button>
+              </Link>
+          </div>
           <div className="flexCont">
             {flight.length ? (
               passengers.map(passenger => {
