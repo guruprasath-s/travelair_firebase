@@ -4,6 +4,7 @@ import { Jumbotron, Alert, Badge, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { startRemovePassenger } from "../actions/flights";
 import RenderPassengerCard from "../components/RenderPassengerCard";
+import RenderSeatLayout from "../components/RenderSeatLayout";
 class CheckIn extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,13 @@ class CheckIn extends React.Component {
     const flight = flights.filter(flight => flight.id === id);
     const passengers = flight.length ? flight[0].passengers : [];
     console.log(id);
+    if (!flight.length) {
+      return (
+        <Alert className="text-center" color="danger">
+          Flight Details for the Flight {id} is not found
+        </Alert>
+      );
+    }
     return (
       <>
         <Jumbotron>
@@ -33,19 +41,19 @@ class CheckIn extends React.Component {
             Total Seats: <Badge color="secondary">{flight[0].totalseats}</Badge>
           </p>
         </Jumbotron>
+        <RenderSeatLayout flight={flight[0]} />
         <div className="passengers-cont">
           <h6 className="passengers-list-title">
             Passengers Travelling{" "}
             <Badge color="primary">{passengers.length}</Badge>
           </h6>
-          <div className="text-center">
-            <Link
-              className="text-center"
-              to={`/checkin/${flight[0].id}/add`}
-            >
+          {flight[0].passengers.length <= flight[0].totalseats ? (
+            <div className="text-center">
+              <Link className="text-center" to={`/checkin/${flight[0].id}/add`}>
                 <Button>Add Passenger</Button>
               </Link>
-          </div>
+            </div>
+          ) : null}
           <div className="flexCont">
             {flight.length ? (
               passengers.map(passenger => {

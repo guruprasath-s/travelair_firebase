@@ -2,14 +2,17 @@ import database from "../firebase/firebase";
 import FlightList from "../fixtures/flights";
 import { history } from "../routes/AppRouter";
 
-const startAddPassenger = (passenger,flightId)=>{
-  return (dispatch)=>{
-    return database.ref(`flights/${flightId}/passengers`).push(passenger).then((ref)=>{
-      console.log("passenger updated");
-      dispatch(ADD_PASSENGER({...passenger,id:ref.key},flightId));
-    })
-  }
-}
+const startAddPassenger = (passenger, flightId) => {
+  return dispatch => {
+    return database
+      .ref(`flights/${flightId}/passengers`)
+      .push(passenger)
+      .then(ref => {
+        console.log("passenger updated");
+        dispatch(ADD_PASSENGER({ ...passenger, id: ref.key }, flightId));
+      });
+  };
+};
 
 const ADD_PASSENGER = (passenger, flightId) => {
   return {
@@ -93,14 +96,31 @@ const startSetFlights = () => {
 //Setting up data to firebase
 const setFirebaseData = () => {
   const flightsData = {};
-  FlightList.flights.forEach(({ id, travel, time, passengers, totalseats }) => {
-    flightsData[id] = { travel, time, totalseats, passengers };
-    let passengersData = [];
-    passengers.forEach(({ id, name, ancillary, Age, seat }) => {
-      passengersData[id] = { name, ancillary, Age, seat };
-    });
-    flightsData[id].passengers = passengersData;
-  });
+  FlightList.flights.forEach(
+    ({
+      id,
+      travel,
+      time,
+      passengers,
+      totalseats,
+      unallocatedseats,
+      allocatedseats
+    }) => {
+      flightsData[id] = {
+        travel,
+        time,
+        totalseats,
+        passengers,
+        unallocatedseats,
+        allocatedseats
+      };
+      let passengersData = [];
+      passengers.forEach(({ id, name, ancillary, Age, seat }) => {
+        passengersData[id] = { name, ancillary, Age, seat };
+      });
+      flightsData[id].passengers = passengersData;
+    }
+  );
   database
     .ref(`flights`)
     .set(flightsData)
@@ -115,6 +135,24 @@ const setFirebaseData = () => {
     });
 };
 
+const SEAT_ALLOCATION = (seatNo, flightid, pid) => {
+  return {
+    type: "SEAT_ALLOCATION",
+    seat: seatNo,
+    flightId: flightid,
+    PassengerId: pid
+  };
+};
+
+const SET_ALLOCATEDSEAT = (allocatedseats, unallocatedseats, flightid) => {
+  return {
+    type: "SET_ALLOCATEDSEAT",
+    allocatedseats,
+    unallocatedseats,
+    flightId: flightid
+  };
+};
+
 export {
   REMOVE_PASSENGER,
   EDIT_PASSENGER,
@@ -123,5 +161,7 @@ export {
   startRemovePassenger,
   startEditPassenger,
   setFirebaseData,
-  startAddPassenger
+  startAddPassenger,
+  SEAT_ALLOCATION,
+  SET_ALLOCATEDSEAT
 };

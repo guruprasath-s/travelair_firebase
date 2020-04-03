@@ -10,31 +10,33 @@ const FlightList = {
           name: "Raj",
           ancillary: "BaggageFee",
           Age: "25",
-          seat: 89
+          seat: 5
         },
         {
           id: "2",
           name: "Gopal",
           ancillary: "BaggageFee",
           Age: "27",
-          seat: 50
+          seat: 8
         },
         {
           id: "3",
           name: "Anjana",
           ancillary: "BaggageFee",
           Age: "30",
-          seat: 80
+          seat: 9
         },
         {
           id: "4",
           name: "Mani",
           ancillary: "BaggageFee",
           Age: "50",
-          seat: 90
+          seat: 3
         }
       ],
-      totalseats: 200
+      totalseats: 10,
+      allocatedseats: 0,
+      unallocatedseats: 10
     },
     {
       id: "SG143",
@@ -46,24 +48,26 @@ const FlightList = {
           name: "Meena",
           ancillary: "BaggageFee",
           Age: "25",
-          seat: 67
+          seat: 6
         },
         {
           id: "2",
           name: "Dheena",
           ancillary: "BaggageFee",
           Age: "27",
-          seat: 50
+          seat: 5
         },
         {
           id: "3",
           name: "Reena",
           ancillary: "BaggageFee",
           Age: "30",
-          seat: 80
+          seat: 8
         }
       ],
-      totalseats: 200
+      totalseats: 10,
+      allocatedseats: 0,
+      unallocatedseats: 10
     },
     {
       id: "SG144",
@@ -75,24 +79,26 @@ const FlightList = {
           name: "Benny",
           ancillary: "BaggageFee",
           Age: "25",
-          seat: 89
+          seat: 9
         },
         {
           id: "2",
           name: "Mouney",
           ancillary: "BaggageFee",
           Age: "27",
-          seat: 50
+          seat: 5
         },
         {
           id: "3",
           name: "Venny",
           ancillary: "BaggageFee",
           Age: "30",
-          seat: 80
+          seat: 2
         }
       ],
-      totalseats: 300
+      totalseats: 10,
+      allocatedseats: 0,
+      unallocatedseats: 10
     }
   ]
 };

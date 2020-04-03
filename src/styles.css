@@ -61,3 +61,51 @@ li.nav-item:last-child {
     -webkit-transform: rotate(360deg);
   }
 }
+
+/* Seat Layout*/
+
+.seats:nth-child(3n) {
+  margin-right: 20px;
+}
+
+.seatLayout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  max-width: 350px;
+  margin: 20px auto;
+  border: 0.5px solid #ccc;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: stretch;
+}
+
+.seats {
+  width: 35px;
+  height: 30px;
+  background-color: #ddd;
+  margin: 5px;
+  cursor: pointer;
+}
+h6.seatLayout-title.text-center {
+  margin-bottom: 30px;
+}
+
+.seatCount {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.seats:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.seats.active {
+  background-color: #28a745;
+  color: #fff;
+}
